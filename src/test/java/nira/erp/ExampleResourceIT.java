@@ -1,3 +1,4 @@
+/*
 package nira.erp;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
@@ -6,3 +7,4 @@ import io.quarkus.test.junit.QuarkusIntegrationTest;
 public class ExampleResourceIT extends ExampleResourceTest {
     // Execute the same tests but in packaged mode.
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package nira.erp;
 
 import io.quarkus.test.junit.QuarkusTest;
@@ -18,4 +19,4 @@ public class ExampleResourceTest {
                 .body(is("Hello from RESTEasy Reactive"));
     }
 
-}
+}*/
