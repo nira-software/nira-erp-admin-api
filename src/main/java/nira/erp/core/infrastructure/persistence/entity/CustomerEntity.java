@@ -1,4 +1,4 @@
-package nira.erp.core.infrastructure.persistence;
+package nira.erp.core.infrastructure.persistence.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
@@ -6,15 +6,12 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity(name = "customers")
-public class Customer extends PanacheEntityBase {
+public class CustomerEntity extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "customer_id")
     public UUID customerId;
-
-    @Column(name = "company_id")
-    public UUID companyId;
 
     @Column(name = "name")
     public String name;
@@ -28,17 +25,12 @@ public class Customer extends PanacheEntityBase {
     @Column(name = "phone_number")
     public String phoneNumber;
 
-    @Column(name = "country_id")
-    public UUID countryId;
-
-    // Otros campos según sea necesario
-
     // Claves foráneas
-    @ManyToOne
-    @JoinColumn(name = "company_id", insertable = false, updatable = false)
-    public Company company;
+    @ManyToOne()
+    @JoinColumn(name = "company_id", referencedColumnName = "company_id")
+    public CompanyEntity companyEntity;
 
-    @ManyToOne
-    @JoinColumn(name = "country_id", insertable = false, updatable = false)
-    public Country country;
+    @ManyToOne()
+    @JoinColumn(name = "country_id", referencedColumnName = "country_id")
+    public CountryEntity countryEntity;
 }

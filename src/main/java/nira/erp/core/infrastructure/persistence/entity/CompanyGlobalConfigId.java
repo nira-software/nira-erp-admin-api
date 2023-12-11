@@ -1,5 +1,5 @@
 
-package nira.erp.core.infrastructure.persistence;
+package nira.erp.core.infrastructure.persistence.entity;
 
 import lombok.Data;
 

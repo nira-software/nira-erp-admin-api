@@ -1,4 +1,4 @@
-package nira.erp.customer.application.port.out;
+package nira.erp.core.application.port.out;
 
 import jakarta.inject.Inject;
 import lombok.AllArgsConstructor;

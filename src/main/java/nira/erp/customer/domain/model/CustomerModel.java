@@ -1,22 +1,20 @@
-package nira.erp.customer.application.port.in;
+package nira.erp.customer.domain.model;
+
+import nira.erp.company.domain.model.CompanyModel;
 
 import java.util.UUID;
 
-/**
- * Estructura de datos para crear un cliente.
- * typePort: Input
- */
-public class CustomerCreateCommand {
+public class CustomerModel {
+
+    /**
+     * Identificador del cliente.
+     */
+    public UUID customerId;
 
     /**
      * Identificador de la empresa.
      */
     public UUID companyId;
-    
-    /**
-     * Identificador del cliente.
-     */
-    public String customerId;
 
     /**
      * Nombre del cliente.
@@ -41,5 +39,11 @@ public class CustomerCreateCommand {
     /**
      * Pais del cliente.
      */
-    public String countryId;
+    public UUID countryId;
+
+    /**
+     * Empresa del cliente.
+     */
+    public CompanyModel company;
+
 }

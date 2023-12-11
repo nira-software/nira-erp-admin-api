@@ -1,4 +1,4 @@
-package nira.erp.customer.application.port.out;
+package nira.erp.core.application.port.out;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

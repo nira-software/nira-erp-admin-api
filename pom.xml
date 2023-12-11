@@ -13,15 +13,23 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>3.5.3</quarkus.platform.version>
+        <quarkus.platform.version>3.6.1</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.1.2</surefire-plugin.version>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>${quarkus.platform.group-id}</groupId>
                 <artifactId>${quarkus.platform.artifact-id}</artifactId>
+                <version>${quarkus.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>${quarkus.platform.group-id}</groupId>
+                <artifactId>quarkus-camel-bom</artifactId>
                 <version>${quarkus.platform.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -87,6 +95,18 @@
             <groupId>org.jboss.logmanager</groupId>
             <artifactId>log4j2-jboss-logmanager</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.camel.quarkus/camel-quarkus-mapstruct -->
+        <dependency>
+            <groupId>org.apache.camel.quarkus</groupId>
+            <artifactId>camel-quarkus-mapstruct</artifactId>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+        -->
     </dependencies>
     <build>
         <plugins>
@@ -109,6 +129,15 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${compiler-plugin.version}</version>
                 <configuration>
+                    <source>${maven.compiler.release}</source>
+                    <target>${maven.compiler.release}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                     <compilerArgs>
                         <arg>-parameters</arg>
                     </compilerArgs>

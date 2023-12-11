@@ -1,4 +1,4 @@
-package nira.erp.core.infrastructure.persistence;
+package nira.erp.core.infrastructure.persistence.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
@@ -22,7 +22,7 @@ public class CompanyGlobalConfig extends PanacheEntityBase {
     // Relación con la tabla de empresas
     @ManyToOne
     @JoinColumn(name = "company_id", insertable = false, updatable = false)
-    public Company company;
+    public CompanyEntity companyEntity;
 
     // Relación con la tabla de configuración global
     @ManyToOne
