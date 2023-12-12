@@ -1,4 +1,4 @@
-package nira.erp.core.infrastructure.persistence;
+package nira.erp.core.infrastructure.persistence.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;

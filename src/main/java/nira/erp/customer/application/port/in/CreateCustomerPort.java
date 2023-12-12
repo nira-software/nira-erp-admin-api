@@ -5,5 +5,5 @@ package nira.erp.customer.application.port.in;
  * typePort: Input
  */
 public interface CreateCustomerPort {
-    Boolean createCustomer(CustomerCreateCommand customer);
+    CustomerCreateCommand save(CustomerCreateCommand customer);
 }

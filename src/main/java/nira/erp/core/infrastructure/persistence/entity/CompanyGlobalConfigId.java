@@ -1,15 +1,16 @@
 
-package nira.erp.core.infrastructure.persistence;
+package nira.erp.core.infrastructure.persistence.entity;
+
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
+@Data
 public class CompanyGlobalConfigId implements Serializable {
-    public UUID companyId;
-    public UUID globalConfigId;
-
-    // Constructores, getters y setters
+    private UUID companyId;
+    private UUID globalConfigId;
 
     @Override
     public boolean equals(Object o) {

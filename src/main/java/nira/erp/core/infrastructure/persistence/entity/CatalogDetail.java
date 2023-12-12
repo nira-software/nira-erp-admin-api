@@ -1,3 +1,4 @@
+/*
 package nira.erp.core.infrastructure.persistence;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
@@ -25,3 +26,4 @@ public class CatalogDetail extends PanacheEntityBase {
     @Column(name = "is_active")
     public boolean isActive;
 }
+*/

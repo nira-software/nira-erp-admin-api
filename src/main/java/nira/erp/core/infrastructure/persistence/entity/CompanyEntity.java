@@ -1,4 +1,4 @@
-package nira.erp.core.infrastructure.persistence;
+package nira.erp.core.infrastructure.persistence.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "companies")
-public class Company extends PanacheEntityBase {
+public class CompanyEntity extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -29,10 +29,10 @@ public class Company extends PanacheEntityBase {
     // Otros campos según sea necesario
 
     // Relación con la tabla de configuración global
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "companyEntity")
     public List<CompanyGlobalConfig> companyGlobalConfigs;
 
     // Relación con la tabla de clientes
-    @OneToMany(mappedBy = "company")
-    public List<Customer> customers;
+    @OneToMany(mappedBy = "companyEntity")
+    public List<CustomerEntity> customerEntities;
 }
