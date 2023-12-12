@@ -8,8 +8,6 @@ import nira.erp.customer.domain.model.CustomerModel;
 import nira.erp.customer.infrastructure.mapper.CustomerCreateCommandMapper;
 import nira.erp.customer.infrastructure.out.port.CustomerPersistenceAdapter;
 
-import java.util.UUID;
-
 /**
  * Implementacion de caso de uso para crear un cliente
  */

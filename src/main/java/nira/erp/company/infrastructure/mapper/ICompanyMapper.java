@@ -4,7 +4,6 @@ import nira.erp.company.domain.model.CompanyModel;
 import nira.erp.core.infrastructure.persistence.entity.CompanyEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
 @Mapper()
 public interface ICompanyMapper {
