@@ -12,14 +12,11 @@ import nira.erp.customer.application.port.out.CreateCustomerPort;
 import nira.erp.customer.application.port.out.LoadCustomerPort;
 import nira.erp.customer.domain.model.CustomerModel;
 import nira.erp.customer.infrastructure.mapper.CustomerMapper;
-import org.slf4j.Logger;
 
 import java.util.UUID;
 
 @ApplicationScoped
 public class CustomerPersistenceAdapter implements LoadCustomerPort, CreateCustomerPort {
-
-    private final Logger logger = org.slf4j.LoggerFactory.getLogger(CustomerPersistenceAdapter.class);
 
     @Inject
     CustomerRepository customerRepository;
@@ -35,8 +32,8 @@ public class CustomerPersistenceAdapter implements LoadCustomerPort, CreateCusto
 
     @Override
     public CustomerModel createCustomer(CustomerModel customerModel) {
-        CountryEntity countryEntity = countryPersistenceAdapter.loadCountry(customerModel.countryId);
-        CompanyEntity companyEntity = companyPersistenceAdapter.loadCompany(customerModel.companyId);
+        CountryEntity countryEntity = countryPersistenceAdapter.loadCountry(customerModel.getCountryId());
+        CompanyEntity companyEntity = companyPersistenceAdapter.loadCompany(customerModel.getCompanyId());
         CustomerEntity customerEntity = customerMapper.toEntity(customerModel);
         customerEntity.companyEntity = companyEntity;
         customerEntity.countryEntity = countryEntity;

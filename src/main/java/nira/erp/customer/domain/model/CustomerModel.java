@@ -1,49 +1,51 @@
 package nira.erp.customer.domain.model;
 
+import lombok.Data;
 import nira.erp.company.domain.model.CompanyModel;
 
 import java.util.UUID;
 
+@Data
 public class CustomerModel {
 
     /**
      * Identificador del cliente.
      */
-    public UUID customerId;
+    private UUID customerId;
 
     /**
      * Identificador de la empresa.
      */
-    public UUID companyId;
+    private UUID companyId;
 
     /**
      * Nombre del cliente.
      */
-    public String name;
+    private String name;
 
     /**
      * Correo electrónico del cliente.
      */
-    public String email;
+    private String email;
 
     /**
      * Nombre Comercial del cliente.
      */
-    public String tradeName;
+    private String tradeName;
 
     /**
      * Telefono del cliente.
      */
-    public String phoneNumber;
+    private String phoneNumber;
 
     /**
      * Pais del cliente.
      */
-    public UUID countryId;
+    private UUID countryId;
 
     /**
      * Empresa del cliente.
      */
-    public CompanyModel company;
+    private CompanyModel company;
 
 }

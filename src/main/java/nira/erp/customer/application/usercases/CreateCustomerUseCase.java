@@ -23,9 +23,7 @@ public class CreateCustomerUseCase implements CreateCustomerPort {
 
     @Override
     public CustomerCreateCommand save(CustomerCreateCommand customerCreateCommand) {
-        // CompanyModel company = companyPersistenceAdapter.loadCompany(customerCreateCommand.companyId);
         CustomerModel customerModel = customerCreateCommandMapper.toModel(customerCreateCommand);
-        // customerModel.company = company;
         customerPersistenceAdapter.createCustomer(customerModel);
         return customerCreateCommand;
     }

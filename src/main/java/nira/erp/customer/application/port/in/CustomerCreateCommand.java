@@ -1,45 +1,48 @@
 package nira.erp.customer.application.port.in;
 
+import lombok.Data;
+
 import java.util.UUID;
 
 /**
  * Estructura de datos para crear un cliente.
  * typePort: Input
  */
+@Data
 public class CustomerCreateCommand {
 
     /**
      * Identificador de la empresa.
      */
-    public UUID companyId;
+    private UUID companyId;
     
     /**
      * Identificador del cliente.
      */
-    public String customerId;
+    private String customerId;
 
     /**
      * Nombre del cliente.
      */
-    public String name;
+    private String name;
 
     /**
      * Correo electrónico del cliente.
      */
-    public String email;
+    private String email;
 
     /**
      * Nombre Comercial del cliente.
      */
-    public String tradeName;
+    private String tradeName;
 
     /**
      * Telefono del cliente.
      */
-    public String phoneNumber;
+    private String phoneNumber;
 
     /**
      * Pais del cliente.
      */
-    public String countryId;
+    private String countryId;
 }

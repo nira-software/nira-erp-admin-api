@@ -1,19 +1,22 @@
 package nira.erp.country.domain.model.model;
 
+import lombok.Data;
+
 import java.util.UUID;
 
 /**
  * Modelo de la empresa propietaria del toda la informacion del sistema.
  */
+@Data
 public class CountryModel {
-    public UUID companyId;
+    private UUID companyId;
 
-    public String tradeName;
+    private String tradeName;
 
-    public String email;
+    private String email;
 
-    public String address;
+    private String address;
 
-    public String phoneNumber;
+    private String phoneNumber;
 
 }

@@ -8,8 +8,8 @@ import org.mapstruct.Mapping;
 @Mapper()
 public interface ICountryMapper {
 
-    CountryEntity toEntity(CountryModel companyModel);
+    CountryEntity toEntity(CountryModel countryModel);
 
     @Mapping(target = "address", ignore = true)
-    CountryModel toModel(CountryEntity companyEntity);
+    CountryModel toModel(CountryEntity countryEntity);
 }

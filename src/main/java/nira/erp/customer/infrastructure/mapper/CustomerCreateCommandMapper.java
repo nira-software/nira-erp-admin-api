@@ -8,14 +8,14 @@ import org.mapstruct.factory.Mappers;
 @ApplicationScoped
 public class CustomerCreateCommandMapper {
 
-    private final ICustomerCreateCommandMapper INSTANCE = Mappers.getMapper(ICustomerCreateCommandMapper.class);
+    private final ICustomerCreateCommandMapper instance = Mappers.getMapper(ICustomerCreateCommandMapper.class);
 
     public CustomerCreateCommand toCommand(CustomerModel customerModel) {
-        return INSTANCE.toCommand(customerModel);
+        return instance.toCommand(customerModel);
     }
 
     public CustomerModel toModel(CustomerCreateCommand customerCommand) {
-        return INSTANCE.toModel(customerCommand);
+        return instance.toModel(customerCommand);
     }
 
 }
