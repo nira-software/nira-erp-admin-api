@@ -14,7 +14,7 @@ public class CustomerCreateCommand {
     /**
      * Identificador de la empresa.
      */
-    private UUID companyId;
+    private String companyId;
     
     /**
      * Identificador del cliente.

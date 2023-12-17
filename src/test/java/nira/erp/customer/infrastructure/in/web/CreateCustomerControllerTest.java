@@ -26,7 +26,7 @@ class CreateCustomerControllerTest {
         command.setEmail("test@domain.test");
         command.setPhoneNumber("70135454");
         command.setTradeName("Company Test");
-        command.setCompanyId(UUID.fromString("97b33f1f-9874-43d4-893f-2a7f34e7eb41"));
+        command.setCompanyId("97b33f1f-9874-43d4-893f-2a7f34e7eb41");
         command.setCountryId("f64f2d7f-f871-4e8b-8cb1-223655d277bf");
     }
 
