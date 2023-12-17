@@ -5,9 +5,11 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
 @Provider
-public class BadRequestExceptionMapper implements ExceptionMapper<IllegalArgumentException> {
+public class BadRequestExceptionMapper implements ExceptionMapper<NiraBadRequestException> {
+
     @Override
-    public Response toResponse(IllegalArgumentException e) {
-        return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+    public Response toResponse(NiraBadRequestException e) {
+        NiraResponse niraResponse = new NiraResponse(Response.Status.BAD_REQUEST, e.getMessage(), e.getData());
+        return Response.status(Response.Status.BAD_REQUEST).entity(niraResponse).build();
     }
 }
