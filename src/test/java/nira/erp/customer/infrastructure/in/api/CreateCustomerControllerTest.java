@@ -1,18 +1,17 @@
-package nira.erp.customer.infrastructure.in.web;
+package nira.erp.customer.infrastructure.in.api;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import nira.erp.customer.application.port.in.CustomerCreateCommand;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @QuarkusTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CreateCustomerControllerTest {
 
     CustomerCreateCommand command;
@@ -31,6 +30,7 @@ class CreateCustomerControllerTest {
     }
 
     @Test
+    @Order(1)
     void create() {
         given()
                 .contentType(ContentType.JSON)
@@ -38,5 +38,29 @@ class CreateCustomerControllerTest {
                 .when().post("/api/v1/customer/create")
                 .then()
                 .statusCode(200);
+    }
+
+    @Test
+    @Order(2)
+    void createWithInvalidCompany() {
+        command.setCompanyId(UUID.randomUUID().toString());
+        given()
+                .contentType(ContentType.JSON)
+                .body(command)
+                .when().post("/api/v1/customer/create")
+                .then()
+                .statusCode(400);
+    }
+
+    @Test
+    @Order(3)
+    void createWithInvalidCountry() {
+        command.setCountryId(UUID.randomUUID().toString());
+        given()
+                .contentType(ContentType.JSON)
+                .body(command)
+                .when().post("/api/v1/customer/create")
+                .then()
+                .statusCode(400);
     }
 }

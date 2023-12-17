@@ -1,4 +1,4 @@
-package nira.erp.customer.infrastructure.in.web;
+package nira.erp.customer.infrastructure.in.api;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;

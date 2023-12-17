@@ -32,8 +32,8 @@ public class CustomerPersistenceAdapter implements LoadCustomerPort, CreateCusto
 
     @Override
     public CustomerModel createCustomer(CustomerModel customerModel) {
-        CountryEntity countryEntity = countryPersistenceAdapter.loadCountry(customerModel.getCountryId());
-        CompanyEntity companyEntity = companyPersistenceAdapter.loadCompany(customerModel.getCompanyId());
+        CountryEntity countryEntity = this.loadCountry(customerModel.getCountryId());
+        CompanyEntity companyEntity = this.loadCompany(customerModel.getCompanyId());
         CustomerEntity customerEntity = customerMapper.toEntity(customerModel);
         customerEntity.companyEntity = companyEntity;
         customerEntity.countryEntity = countryEntity;
@@ -45,5 +45,21 @@ public class CustomerPersistenceAdapter implements LoadCustomerPort, CreateCusto
     public CustomerModel loadCustomer(UUID customerId) {
         CustomerEntity customerEntity = customerRepository.findById(customerId);
         return customerMapper.toModel(customerEntity);
+    }
+
+    private CountryEntity loadCountry(UUID countryId) {
+        CountryEntity country = countryPersistenceAdapter.loadCountry(countryId);
+        if (country == null) {
+            throw new IllegalArgumentException("Country not found");
+        }
+        return country;
+    }
+
+    private CompanyEntity loadCompany(UUID companyId) {
+        CompanyEntity company = companyPersistenceAdapter.loadCompany(companyId);
+        if (company == null) {
+            throw new IllegalArgumentException("Company not found");
+        }
+        return company;
     }
 }
