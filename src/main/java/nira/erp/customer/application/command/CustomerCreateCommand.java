@@ -1,12 +1,15 @@
 package nira.erp.customer.application.command;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Estructura de datos para crear un cliente.
  * typePort: Input
  */
-@Data
+@Getter
+@Setter
 public class CustomerCreateCommand {
 
     /**

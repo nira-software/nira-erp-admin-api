@@ -35,7 +35,7 @@ class FindByIdCustomerControllerTest {
         given()
                 .contentType(ContentType.JSON)
                 .body(command)
-                .when().post("/api/v1/customer/create")
+                .when().post("/api/v1/customer")
                 .then()
                 .statusCode(200);
     }

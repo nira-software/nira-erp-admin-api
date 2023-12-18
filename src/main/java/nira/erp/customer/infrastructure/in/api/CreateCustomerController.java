@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import nira.erp.core.infrastructure.out.api.exception.NiraBadRequestException;
 import nira.erp.customer.application.command.CustomerCreateCommand;
-import nira.erp.customer.application.port.out.NiraResponse;
+import nira.erp.core.application.port.out.NiraResponse;
 import nira.erp.customer.application.usercases.CreateCustomerUseCase;
 
 

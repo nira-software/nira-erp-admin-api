@@ -4,7 +4,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 import nira.erp.core.infrastructure.out.api.exception.NiraBadRequestException;
-import nira.erp.customer.application.port.out.NiraResponse;
+import nira.erp.core.application.port.out.NiraResponse;
 
 @Provider
 public class BadRequestExceptionMapper implements ExceptionMapper<NiraBadRequestException> {
