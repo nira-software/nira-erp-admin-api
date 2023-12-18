@@ -1,3 +1,4 @@
+
 package nira.erp.customer.infrastructure.out.port;
 
 import io.quarkus.test.InjectMock;
@@ -7,6 +8,7 @@ import jakarta.inject.Inject;
 import nira.erp.company.domain.model.CompanyModel;
 import nira.erp.core.infrastructure.persistence.entity.CustomerEntity;
 import nira.erp.core.infrastructure.persistence.repository.CustomerRepository;
+import nira.erp.country.domain.model.model.CountryModel;
 import nira.erp.customer.domain.model.CustomerModel;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,16 +35,25 @@ class CustomerPersistenceAdapterTest {
 
     @BeforeEach
     void setUp() {
-        customerModel = new CustomerModel();
         // generate random UUID
-        UUID uuid = UUID.randomUUID();
-        customerModel.setCustomerId(uuid);
+        UUID customerId = UUID.randomUUID();
+
+        UUID companyId = UUID.fromString("97b33f1f-9874-43d4-893f-2a7f34e7eb41");
+        CompanyModel companyModel = new CompanyModel();
+        companyModel.setCompanyId(companyId);
+        customerModel = new CustomerModel();
+
+        UUID countryId = UUID.fromString("f64f2d7f-f871-4e8b-8cb1-223655d277bf");
+        CountryModel countryModel = new CountryModel();
+        countryModel.setCountryId(countryId);
+
+        customerModel.setCustomerId(customerId);
         customerModel.setName("Test");
         customerModel.setEmail("test@domain.com");
         customerModel.setPhoneNumber("1234567890");
         customerModel.setCompany(new CompanyModel());
-        customerModel.setCompanyId(UUID.randomUUID());
-        customerModel.setCountryId(UUID.randomUUID());
+        customerModel.setCompany(companyModel);
+        customerModel.setCountry(countryModel);
 
         customerEntity = new CustomerEntity();
         customerEntity.customerId = customerModel.getCustomerId();

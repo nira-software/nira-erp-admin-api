@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.given;
 
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class CreateCustomerControllerTest {
+class FindByIdCustomerControllerTest {
 
     CustomerCreateCommand command;
 
@@ -35,32 +35,29 @@ class CreateCustomerControllerTest {
         given()
                 .contentType(ContentType.JSON)
                 .body(command)
-                .when().post("/api/v1/customer")
+                .when().post("/api/v1/customer/create")
                 .then()
                 .statusCode(200);
     }
 
     @Test
     @Order(2)
-    void createWithInvalidCompany() {
+    void findId() {
         command.setCompanyId(UUID.randomUUID().toString());
         given()
                 .contentType(ContentType.JSON)
-                .body(command)
-                .when().post("/api/v1/customer")
+                .when().get("/api/v1/customer/7be5d4c5-a0e7-47d7-be12-24580ab6456f")
                 .then()
-                .statusCode(400);
+                .statusCode(200);
     }
 
     @Test
     @Order(3)
-    void createWithInvalidCountry() {
-        command.setCountryId(UUID.randomUUID().toString());
+    void findIdNotFound() {
         given()
                 .contentType(ContentType.JSON)
-                .body(command)
-                .when().post("/api/v1/customer")
+                .when().get("/api/v1/customer/7be5d4c5-a0e7-47d7-be12-24580ab6456a")
                 .then()
-                .statusCode(400);
+                .statusCode(404);
     }
 }

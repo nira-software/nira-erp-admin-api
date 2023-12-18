@@ -2,6 +2,7 @@ package nira.erp.country.domain.model.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
@@ -9,14 +10,12 @@ import java.util.UUID;
  */
 @Data
 public class CountryModel {
-    private UUID companyId;
+    private UUID countryId;
 
-    private String tradeName;
+    private String name;
 
-    private String email;
+    private String code;
 
-    private String address;
-
-    private String phoneNumber;
+    private boolean active;
 
 }

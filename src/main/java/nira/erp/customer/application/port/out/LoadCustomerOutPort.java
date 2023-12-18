@@ -4,6 +4,6 @@ import nira.erp.customer.domain.model.CustomerModel;
 
 import java.util.UUID;
 
-public interface LoadCustomerPort {
+public interface LoadCustomerOutPort {
     CustomerModel loadCustomer(UUID customerId);
 }

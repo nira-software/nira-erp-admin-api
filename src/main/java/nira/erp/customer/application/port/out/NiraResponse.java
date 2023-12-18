@@ -1,4 +1,4 @@
-package nira.erp.core.infrastructure.out.api;
+package nira.erp.customer.application.port.out;
 
 import jakarta.ws.rs.core.Response;
 import lombok.Getter;

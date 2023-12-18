@@ -1,8 +1,6 @@
-package nira.erp.customer.application.port.in;
+package nira.erp.customer.application.command;
 
 import lombok.Data;
-
-import java.util.UUID;
 
 /**
  * Estructura de datos para crear un cliente.

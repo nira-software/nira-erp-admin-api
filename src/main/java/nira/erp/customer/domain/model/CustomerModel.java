@@ -2,7 +2,9 @@ package nira.erp.customer.domain.model;
 
 import lombok.Data;
 import nira.erp.company.domain.model.CompanyModel;
+import nira.erp.country.domain.model.model.CountryModel;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
@@ -12,11 +14,6 @@ public class CustomerModel {
      * Identificador del cliente.
      */
     private UUID customerId;
-
-    /**
-     * Identificador de la empresa.
-     */
-    private UUID companyId;
 
     /**
      * Nombre del cliente.
@@ -41,7 +38,7 @@ public class CustomerModel {
     /**
      * Pais del cliente.
      */
-    private UUID countryId;
+    private CountryModel country;
 
     /**
      * Empresa del cliente.

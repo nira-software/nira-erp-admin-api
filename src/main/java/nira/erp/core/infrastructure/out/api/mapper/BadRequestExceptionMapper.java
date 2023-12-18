@@ -1,8 +1,10 @@
-package nira.erp.core.infrastructure.out.api;
+package nira.erp.core.infrastructure.out.api.mapper;
 
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
+import nira.erp.core.infrastructure.out.api.exception.NiraBadRequestException;
+import nira.erp.customer.application.port.out.NiraResponse;
 
 @Provider
 public class BadRequestExceptionMapper implements ExceptionMapper<NiraBadRequestException> {
@@ -10,6 +12,6 @@ public class BadRequestExceptionMapper implements ExceptionMapper<NiraBadRequest
     @Override
     public Response toResponse(NiraBadRequestException e) {
         NiraResponse niraResponse = new NiraResponse(Response.Status.BAD_REQUEST, e.getMessage(), e.getData());
-        return Response.status(Response.Status.BAD_REQUEST).entity(niraResponse).build();
+        return Response.status(niraResponse.getStatus()).entity(niraResponse).build();
     }
 }

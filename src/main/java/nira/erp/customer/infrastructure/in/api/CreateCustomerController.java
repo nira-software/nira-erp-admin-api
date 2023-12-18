@@ -8,16 +8,14 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import nira.erp.core.application.port.out.MapperJson;
-import nira.erp.core.infrastructure.out.api.NiraBadRequestException;
-import nira.erp.core.infrastructure.out.api.NiraResponse;
-import nira.erp.customer.application.port.in.CreateCustomerPort;
-import nira.erp.customer.application.port.in.CustomerCreateCommand;
+import nira.erp.core.infrastructure.out.api.exception.NiraBadRequestException;
+import nira.erp.customer.application.command.CustomerCreateCommand;
+import nira.erp.customer.application.port.out.NiraResponse;
 import nira.erp.customer.application.usercases.CreateCustomerUseCase;
 
 
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/api/v1/customer/create")
+@Path("/api/v1/customer")
 public class CreateCustomerController {
     @Inject
     CreateCustomerUseCase createCustomerUseCase;

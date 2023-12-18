@@ -1,11 +1,12 @@
 package nira.erp.customer.application.port.in;
 
-import nira.erp.core.infrastructure.out.api.NiraResponse;
+import nira.erp.customer.application.command.CustomerCreateCommand;
+import nira.erp.customer.application.port.out.NiraResponse;
 
 /**
  * Contrato que se debe implementar un servicio para crear un cliente.
  * typePort: Input
  */
-public interface CreateCustomerPort {
+public interface CreateCustomerInPort {
     NiraResponse save(CustomerCreateCommand customer);
 }

@@ -3,14 +3,13 @@ package nira.erp.customer.infrastructure.out.port;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import nira.erp.company.infrastructure.out.port.CompanyPersistenceAdapter;
-import nira.erp.core.infrastructure.out.api.NiraBadRequestException;
 import nira.erp.core.infrastructure.persistence.entity.CompanyEntity;
 import nira.erp.core.infrastructure.persistence.entity.CountryEntity;
 import nira.erp.core.infrastructure.persistence.entity.CustomerEntity;
 import nira.erp.core.infrastructure.persistence.repository.CustomerRepository;
 import nira.erp.country.infrastructure.out.port.CountryPersistenceAdapter;
-import nira.erp.customer.application.port.out.CreateCustomerPort;
-import nira.erp.customer.application.port.out.LoadCustomerPort;
+import nira.erp.customer.application.port.out.CreateCustomerOutPort;
+import nira.erp.customer.application.port.out.LoadCustomerOutPort;
 import nira.erp.customer.domain.model.CustomerModel;
 import nira.erp.customer.infrastructure.mapper.CustomerMapper;
 
@@ -20,7 +19,7 @@ import java.util.UUID;
  * Adaptador de persistencia para el modulo de clientes
  */
 @ApplicationScoped
-public class CustomerPersistenceAdapter implements LoadCustomerPort, CreateCustomerPort {
+public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCustomerOutPort {
 
     /**
      * Repositorio de clientes
@@ -54,8 +53,8 @@ public class CustomerPersistenceAdapter implements LoadCustomerPort, CreateCusto
      */
     @Override
     public CustomerModel createCustomer(CustomerModel customerModel) {
-        CountryEntity countryEntity = this.loadCountry(customerModel.getCountryId());
-        CompanyEntity companyEntity = this.loadCompany(customerModel.getCompanyId());
+        CountryEntity countryEntity = this.loadCountry(customerModel.getCountry().getCountryId());
+        CompanyEntity companyEntity = this.loadCompany(customerModel.getCompany().getCompanyId());
         CustomerEntity customerEntity = customerMapper.toEntity(customerModel);
         customerEntity.companyEntity = companyEntity;
         customerEntity.countryEntity = countryEntity;
@@ -72,6 +71,9 @@ public class CustomerPersistenceAdapter implements LoadCustomerPort, CreateCusto
     @Override
     public CustomerModel loadCustomer(UUID customerId) {
         CustomerEntity customerEntity = customerRepository.findById(customerId);
+        if (customerEntity == null) {
+            throw new IllegalArgumentException("Customer not found");
+        }
         return customerMapper.toModel(customerEntity);
     }
 
