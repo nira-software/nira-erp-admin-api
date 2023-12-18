@@ -8,6 +8,9 @@ import org.mapstruct.Mapping;
 @Mapper()
 public interface ICompanyMapper {
 
+    @Mapping(target = "companyGlobalConfigs", ignore = true)
+    @Mapping(target = "address", ignore = true)
+    @Mapping(target="customerEntities", ignore = true)
     CompanyEntity toEntity(CompanyModel companyModel);
 
     @Mapping(target = "address", ignore = true)

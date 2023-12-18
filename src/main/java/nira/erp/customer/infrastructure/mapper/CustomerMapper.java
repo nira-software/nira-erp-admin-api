@@ -8,14 +8,14 @@ import org.mapstruct.factory.Mappers;
 @ApplicationScoped
 public class CustomerMapper {
 
-    private final ICustomerMapper INSTANCE = Mappers.getMapper(ICustomerMapper.class);
+    private final ICustomerMapper instance = Mappers.getMapper(ICustomerMapper.class);
 
 
     public CustomerEntity toEntity(CustomerModel customerModel) {
-        return INSTANCE.toEntity(customerModel);
+        return instance.toEntity(customerModel);
     }
 
     public CustomerModel toModel(CustomerEntity customerEntity) {
-        return INSTANCE.toModel(customerEntity);
+        return instance.toModel(customerEntity);
     }
 }
