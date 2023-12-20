@@ -11,14 +11,14 @@ import jakarta.ws.rs.core.Response;
 import nira.erp.core.infrastructure.out.api.exception.NiraBadRequestException;
 import nira.erp.customer.application.command.CustomerCreateCommand;
 import nira.erp.core.application.port.out.NiraResponse;
-import nira.erp.customer.application.usercases.CreateCustomerUseCase;
+import nira.erp.customer.application.port.in.CreateCustomerInPort;
 
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Path("/api/v1/customer")
 public class CreateCustomerController {
     @Inject
-    CreateCustomerUseCase createCustomerUseCase;
+    CreateCustomerInPort createCustomerUseCase;
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)

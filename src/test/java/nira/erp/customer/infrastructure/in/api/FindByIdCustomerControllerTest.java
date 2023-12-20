@@ -8,6 +8,7 @@ import org.junit.jupiter.api.*;
 import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @QuarkusTest
@@ -15,12 +16,16 @@ import static io.restassured.RestAssured.given;
 class FindByIdCustomerControllerTest {
 
     CustomerCreateCommand command;
+    String customerId;
+    String customerNotFoundId;
 
     @BeforeEach
     void setUp() {
-        UUID customerId = UUID.randomUUID();
+        customerId = "8e7d0028-fece-4ddc-842b-ee1fc81cd7b6";
+        customerNotFoundId = "f64f2d7f-f871-4e8b-8cb1-223655d277bf";
+
         command = new CustomerCreateCommand();
-        command.setCustomerId(customerId.toString());
+        command.setCustomerId(customerId);
         command.setName("Cliente Test");
         command.setEmail("test@domain.test");
         command.setPhoneNumber("70135454");
@@ -43,10 +48,10 @@ class FindByIdCustomerControllerTest {
     @Test
     @Order(2)
     void findId() {
-        command.setCompanyId(UUID.randomUUID().toString());
+
         given()
                 .contentType(ContentType.JSON)
-                .when().get("/api/v1/customer/7be5d4c5-a0e7-47d7-be12-24580ab6456f")
+                .when().get("/api/v1/customer/" + customerId)
                 .then()
                 .statusCode(200);
     }
@@ -56,7 +61,7 @@ class FindByIdCustomerControllerTest {
     void findIdNotFound() {
         given()
                 .contentType(ContentType.JSON)
-                .when().get("/api/v1/customer/7be5d4c5-a0e7-47d7-be12-24580ab6456a")
+                .when().get("/api/v1/customer/" + customerNotFoundId)
                 .then()
                 .statusCode(404);
     }

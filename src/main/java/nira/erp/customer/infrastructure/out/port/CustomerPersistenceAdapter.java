@@ -59,7 +59,7 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
         customerEntity.companyEntity = companyEntity;
         customerEntity.countryEntity = countryEntity;
         customerRepository.getEntityManager().merge(customerEntity);
-        return customerModel;
+        return customerMapper.toModel(customerEntity);
     }
 
     /**

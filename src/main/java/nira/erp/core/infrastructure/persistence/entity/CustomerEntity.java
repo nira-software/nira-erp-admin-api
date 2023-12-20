@@ -9,7 +9,6 @@ import java.util.UUID;
 public class CustomerEntity extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "customer_id")
     public UUID customerId;
 

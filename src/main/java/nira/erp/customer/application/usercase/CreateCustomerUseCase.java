@@ -1,4 +1,4 @@
-package nira.erp.customer.application.usercases;
+package nira.erp.customer.application.usercase;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
