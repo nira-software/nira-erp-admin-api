@@ -7,6 +7,7 @@ import nira.erp.company.domain.model.CompanyModel;
 import nira.erp.country.domain.model.model.CountryModel;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -37,6 +38,11 @@ public class CustomerModel {
      * Telefono del cliente.
      */
     private String phoneNumber;
+
+    /**
+     * Direcciones del cliente.
+     */
+    private List<CustomerAddressModel> addresses;
 
     /**
      * Pais del cliente.

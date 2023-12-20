@@ -3,6 +3,7 @@ package nira.erp.core.infrastructure.persistence.entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "customers")
@@ -32,4 +33,7 @@ public class CustomerEntity extends PanacheEntityBase {
     @ManyToOne()
     @JoinColumn(name = "country_id", referencedColumnName = "country_id")
     public CountryEntity countryEntity;
+
+    @OneToMany(mappedBy = "customer")
+    public List<CustomerAddressEntity> addresses;
 }

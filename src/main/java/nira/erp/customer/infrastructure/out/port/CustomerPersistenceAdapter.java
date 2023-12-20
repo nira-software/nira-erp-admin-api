@@ -5,7 +5,9 @@ import jakarta.inject.Inject;
 import nira.erp.company.infrastructure.out.port.CompanyPersistenceAdapter;
 import nira.erp.core.infrastructure.persistence.entity.CompanyEntity;
 import nira.erp.core.infrastructure.persistence.entity.CountryEntity;
+import nira.erp.core.infrastructure.persistence.entity.CustomerAddressEntity;
 import nira.erp.core.infrastructure.persistence.entity.CustomerEntity;
+import nira.erp.core.infrastructure.persistence.repository.CustomerAddressRepository;
 import nira.erp.core.infrastructure.persistence.repository.CustomerRepository;
 import nira.erp.country.infrastructure.out.port.CountryPersistenceAdapter;
 import nira.erp.customer.application.port.out.CreateCustomerOutPort;
@@ -13,6 +15,7 @@ import nira.erp.customer.application.port.out.LoadCustomerOutPort;
 import nira.erp.customer.domain.model.CustomerModel;
 import nira.erp.customer.infrastructure.mapper.CustomerMapper;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 /**
@@ -26,6 +29,9 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
      */
     @Inject
     CustomerRepository customerRepository;
+
+    @Inject
+    CustomerAddressRepository customerAddressRepository;
 
     /**
      * Adaptador de persistencia para el modulo de Compañias
@@ -59,6 +65,8 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
         customerEntity.companyEntity = companyEntity;
         customerEntity.countryEntity = countryEntity;
         customerRepository.getEntityManager().merge(customerEntity);
+        customerAddressRepository.getEntityManager().merge(createCustomerAddress(customerEntity));
+
         return customerMapper.toModel(customerEntity);
     }
 
@@ -103,5 +111,12 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
             throw new IllegalArgumentException("Company not found");
         }
         return company;
+    }
+
+    private CustomerAddressEntity createCustomerAddress(CustomerEntity customer) {
+        CustomerAddressEntity customerAddressEntity = customer.addresses.get(0);
+        customerAddressEntity.createdAt = new Timestamp(System.currentTimeMillis());
+        customerAddressEntity.customer = customer;
+        return customerAddressEntity;
     }
 }

@@ -7,15 +7,12 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 @Entity(name = "customer_addresses")
-public class CustomerAddress extends PanacheEntityBase {
+public class CustomerAddressEntity extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "address_id")
     public UUID addressId;
-
-    @Column(name = "customer_id")
-    public UUID customerId;
 
     @Column(name = "type", nullable = false)
     public String type;
@@ -37,6 +34,10 @@ public class CustomerAddress extends PanacheEntityBase {
 
     @Column(name = "updated_at")
     public Timestamp updatedAt;
+
+    @ManyToOne()
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    public CustomerEntity customer;
 
     // Otros campos según sea necesario
 }

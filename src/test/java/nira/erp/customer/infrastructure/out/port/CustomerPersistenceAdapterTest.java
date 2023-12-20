@@ -7,9 +7,11 @@ import jakarta.transaction.Transactional;
 import nira.erp.company.domain.model.CompanyModel;
 import nira.erp.core.infrastructure.persistence.entity.CustomerEntity;
 import nira.erp.country.domain.model.model.CountryModel;
+import nira.erp.customer.domain.model.CustomerAddressModel;
 import nira.erp.customer.domain.model.CustomerModel;
 import org.junit.jupiter.api.*;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,6 +24,8 @@ class CustomerPersistenceAdapterTest {
     CustomerPersistenceAdapter customerPersistenceAdapter;
 
     CustomerModel customerModel;
+
+    CustomerAddressModel customerAddressModel;
 
     CustomerEntity customerEntity;
 
@@ -41,11 +45,19 @@ class CustomerPersistenceAdapterTest {
         CountryModel countryModel = new CountryModel();
         countryModel.setCountryId(countryId);
 
+        customerAddressModel = new CustomerAddressModel();
+        customerAddressModel.setType("Contacto");
+        customerAddressModel.setStreetAddress("Test Address");
+        customerAddressModel.setCityId(UUID.fromString("f02fabab-a4c3-4e61-b947-83f437a06709"));
+        customerAddressModel.setPostalCode("1234");
+        customerAddressModel.setActive(true);
+
         customerModel.setCustomerId(customerId);
         customerModel.setName("Test CustomerPersistenceAdapterTest");
         customerModel.setEmail("test@domain.test");
         customerModel.setPhoneNumber("70135454");
         customerModel.setTradeName("Company Test");
+        customerModel.setAddresses(List.of(new CustomerAddressModel[]{customerAddressModel}));
         customerModel.setCompany(new CompanyModel());
         customerModel.setCompany(companyModel);
         customerModel.setCountry(countryModel);
