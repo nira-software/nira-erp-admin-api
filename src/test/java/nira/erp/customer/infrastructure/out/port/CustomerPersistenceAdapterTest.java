@@ -42,9 +42,10 @@ class CustomerPersistenceAdapterTest {
         countryModel.setCountryId(countryId);
 
         customerModel.setCustomerId(customerId);
-        customerModel.setName("Cliente Test");
+        customerModel.setName("Test CustomerPersistenceAdapterTest");
         customerModel.setEmail("test@domain.test");
         customerModel.setPhoneNumber("70135454");
+        customerModel.setTradeName("Company Test");
         customerModel.setCompany(new CompanyModel());
         customerModel.setCompany(companyModel);
         customerModel.setCountry(countryModel);

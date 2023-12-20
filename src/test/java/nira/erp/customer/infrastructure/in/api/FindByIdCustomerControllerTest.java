@@ -26,7 +26,7 @@ class FindByIdCustomerControllerTest {
 
         command = new CustomerCreateCommand();
         command.setCustomerId(customerId);
-        command.setName("Cliente Test");
+        command.setName("Test FindByIdCustomerControllerTest");
         command.setEmail("test@domain.test");
         command.setPhoneNumber("70135454");
         command.setTradeName("Company Test");

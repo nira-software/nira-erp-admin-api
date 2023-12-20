@@ -21,7 +21,7 @@ class CreateCustomerControllerTest {
         UUID customerId = UUID.randomUUID();
         command = new CustomerCreateCommand();
         command.setCustomerId(customerId.toString());
-        command.setName("Cliente Test");
+        command.setName("Test CreateCustomerControllerTest");
         command.setEmail("test@domain.test");
         command.setPhoneNumber("70135454");
         command.setTradeName("Company Test");
