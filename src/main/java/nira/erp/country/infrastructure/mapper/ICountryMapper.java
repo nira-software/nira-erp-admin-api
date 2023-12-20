@@ -10,12 +10,10 @@ public interface ICountryMapper {
 
     @Mapping(target = "countryName", source = "name")
     @Mapping(target = "countryCode", source = "code")
-    @Mapping(target = "isActive", source = "active")
     @Mapping(target = "globalConfigId", ignore = true)
     CountryEntity toEntity(CountryModel countryModel);
 
     @Mapping(target = "name", source = "countryName")
     @Mapping(target = "code", source = "countryCode")
-    @Mapping(target = "active", source = "isActive")
     CountryModel toModel(CountryEntity countryEntity);
 }

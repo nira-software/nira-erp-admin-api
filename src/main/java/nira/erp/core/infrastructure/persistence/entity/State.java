@@ -9,7 +9,6 @@ import java.util.UUID;
 public class State extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "state_id")
     public UUID stateId;
 
@@ -22,7 +21,7 @@ public class State extends PanacheEntityBase {
     @Column(name = "state_name")
     public String stateName;
 
-    @Column(name = "is_active")
-    public boolean isActive;
+    @Column(name = "active")
+    public boolean active;
 }
 

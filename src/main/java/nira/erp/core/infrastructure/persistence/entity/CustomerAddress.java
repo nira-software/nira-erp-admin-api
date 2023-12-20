@@ -29,8 +29,8 @@ public class CustomerAddress extends PanacheEntityBase {
     @Column(name = "postal_code")
     public String postalCode;
 
-    @Column(name = "is_active")
-    public boolean isActive;
+    @Column(name = "active")
+    public boolean active;
 
     @Column(name = "created_at")
     public Timestamp createdAt;

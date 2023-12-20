@@ -9,7 +9,6 @@ import java.util.UUID;
 public class GlobalConfig extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     public UUID id;
 

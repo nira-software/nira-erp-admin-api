@@ -22,8 +22,8 @@ public class City extends PanacheEntityBase {
     @Column(name = "city_name")
     public String cityName;
 
-    @Column(name = "is_active")
-    public boolean isActive;
+    @Column(name = "active")
+    public boolean active;
 }
 
 
