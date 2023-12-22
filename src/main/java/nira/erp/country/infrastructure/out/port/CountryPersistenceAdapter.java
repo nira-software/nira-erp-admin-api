@@ -2,7 +2,7 @@ package nira.erp.country.infrastructure.out.port;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import nira.erp.core.infrastructure.persistence.entity.CountryEntity;
+import nira.erp.core.infrastructure.persistence.entity.GeoCountryEntity;
 import nira.erp.core.infrastructure.persistence.repository.CountryRepository;
 import nira.erp.country.application.port.out.LoadCountryPort;
 import nira.erp.country.infrastructure.mapper.CountryMapper;
@@ -19,7 +19,7 @@ public class CountryPersistenceAdapter implements LoadCountryPort {
     CountryMapper companyMapper;
 
     @Override
-    public CountryEntity loadCountry(UUID countryId) {
+    public GeoCountryEntity loadCountry(UUID countryId) {
         return countryRepository.findById(countryId);
     }
 }

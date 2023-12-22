@@ -25,13 +25,10 @@ public class CompanyEntity extends PanacheEntityBase {
     @Column(name = "phone_number")
     public String phoneNumber;
 
-    // Otros campos según sea necesario
-
-    // Relación con la tabla de configuración global
     @OneToMany(mappedBy = "companyEntity")
     public List<CompanyGlobalConfig> companyGlobalConfigs;
 
     // Relación con la tabla de clientes
-    @OneToMany(mappedBy = "companyEntity")
+    @OneToMany(mappedBy = "company")
     public List<CustomerEntity> customerEntities;
 }

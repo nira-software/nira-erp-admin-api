@@ -3,17 +3,15 @@ package nira.erp.core.infrastructure.persistence.entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
-@Entity(name = "countries")
-public class CountryEntity extends PanacheEntityBase {
+@Entity(name = "geo_countries")
+public class GeoCountryEntity extends PanacheEntityBase {
 
     @Id
     @Column(name = "country_id")
     public UUID countryId;
-
-    @Column(name = "global_config_id")
-    public UUID globalConfigId;
 
     @Column(name = "country_code")
     public String countryCode;
@@ -23,5 +21,11 @@ public class CountryEntity extends PanacheEntityBase {
 
     @Column(name = "active")
     public boolean active;
+
+    @OneToMany(mappedBy = "country")
+    public List<GeoStateEntity> states;
+
+    @OneToMany(mappedBy = "country")
+    public List<CustomerEntity> customers;
 }
 

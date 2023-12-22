@@ -1,7 +1,7 @@
 package nira.erp.country.infrastructure.mapper;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import nira.erp.core.infrastructure.persistence.entity.CountryEntity;
+import nira.erp.core.infrastructure.persistence.entity.GeoCountryEntity;
 import nira.erp.country.domain.model.model.CountryModel;
 import org.mapstruct.factory.Mappers;
 
@@ -9,11 +9,11 @@ import org.mapstruct.factory.Mappers;
 public class CountryMapper {
     public static final ICountryMapper INSTANCE = Mappers.getMapper(ICountryMapper.class);
 
-    public CountryEntity toEntity(CountryModel countryModel) {
+    public GeoCountryEntity toEntity(CountryModel countryModel) {
         return INSTANCE.toEntity(countryModel);
     }
 
-    public CountryModel toModel(CountryEntity companyEntity) {
+    public CountryModel toModel(GeoCountryEntity companyEntity) {
         return INSTANCE.toModel(companyEntity);
     }
 }

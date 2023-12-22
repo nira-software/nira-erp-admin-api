@@ -9,13 +9,13 @@ import org.mapstruct.Mapping;
 @Mapper( uses = { CompanyMapper.class, CountryMapper.class, CustomerAddressMapper.class })
 public interface ICustomerMapper {
 
-    @Mapping(target = "companyEntity", source = "company")
-    @Mapping(target = "countryEntity", source = "country")
+    @Mapping(target = "company", source = "company")
+    @Mapping(target = "country", source = "country")
     @Mapping(target = "addresses", source = "addresses")
     CustomerEntity toEntity(CustomerModel customerModel);
 
-    @Mapping(target = "company", source = "companyEntity")
-    @Mapping(target = "country", source = "countryEntity")
+    @Mapping(target = "company", source = "company")
+    @Mapping(target = "country", source = "country")
     @Mapping(target = "addresses", source = "addresses")
     CustomerModel toModel(CustomerEntity customerEntity);
 }

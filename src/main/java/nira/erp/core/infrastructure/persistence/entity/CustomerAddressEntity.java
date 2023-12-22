@@ -20,9 +20,6 @@ public class CustomerAddressEntity extends PanacheEntityBase {
     @Column(name = "street_address", nullable = false)
     public String streetAddress;
 
-    @Column(name = "city_id")
-    public UUID cityId;
-
     @Column(name = "postal_code")
     public String postalCode;
 
@@ -39,5 +36,7 @@ public class CustomerAddressEntity extends PanacheEntityBase {
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     public CustomerEntity customer;
 
-    // Otros campos según sea necesario
+    @ManyToOne()
+    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+    public GeoCityEntity city;
 }

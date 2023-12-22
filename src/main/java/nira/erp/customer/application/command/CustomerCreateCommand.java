@@ -47,6 +47,11 @@ public class CustomerCreateCommand {
     private String address;
 
     /**
+     * Ciudad del cliente.
+     */
+    private String cityId;
+
+    /**
      * Pais del cliente.
      */
     private String countryId;

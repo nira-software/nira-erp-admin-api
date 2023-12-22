@@ -4,7 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import nira.erp.company.infrastructure.out.port.CompanyPersistenceAdapter;
 import nira.erp.core.infrastructure.persistence.entity.CompanyEntity;
-import nira.erp.core.infrastructure.persistence.entity.CountryEntity;
+import nira.erp.core.infrastructure.persistence.entity.GeoCountryEntity;
 import nira.erp.core.infrastructure.persistence.entity.CustomerAddressEntity;
 import nira.erp.core.infrastructure.persistence.entity.CustomerEntity;
 import nira.erp.core.infrastructure.persistence.repository.CustomerAddressRepository;
@@ -59,11 +59,11 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
      */
     @Override
     public CustomerModel createCustomer(CustomerModel customerModel) {
-        CountryEntity countryEntity = this.loadCountry(customerModel.getCountry().getCountryId());
+        GeoCountryEntity geoCountryEntity = this.loadCountry(customerModel.getCountry().getCountryId());
         CompanyEntity companyEntity = this.loadCompany(customerModel.getCompany().getCompanyId());
         CustomerEntity customerEntity = customerMapper.toEntity(customerModel);
-        customerEntity.companyEntity = companyEntity;
-        customerEntity.countryEntity = countryEntity;
+        customerEntity.company = companyEntity;
+        customerEntity.country = geoCountryEntity;
         customerRepository.getEntityManager().merge(customerEntity);
         customerAddressRepository.getEntityManager().merge(createCustomerAddress(customerEntity));
 
@@ -91,8 +91,8 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
      * @param countryId id de pais
      * @return entidad de pais
      */
-    private CountryEntity loadCountry(UUID countryId) {
-        CountryEntity country = countryPersistenceAdapter.loadCountry(countryId);
+    private GeoCountryEntity loadCountry(UUID countryId) {
+        GeoCountryEntity country = countryPersistenceAdapter.loadCountry(countryId);
         if (country == null) {
             throw new IllegalArgumentException("Country not found");
         }
