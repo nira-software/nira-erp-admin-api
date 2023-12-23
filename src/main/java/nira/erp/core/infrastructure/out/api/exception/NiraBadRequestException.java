@@ -5,8 +5,8 @@ import lombok.Getter;
 import java.io.Serializable;
 @Getter
 public class NiraBadRequestException extends RuntimeException implements Serializable {
-    private final Object data;
-    public NiraBadRequestException(String message, Object data) {
+    private final Serializable data;
+    public NiraBadRequestException(String message, Serializable data) {
         super(message);
         this.data = data;
     }

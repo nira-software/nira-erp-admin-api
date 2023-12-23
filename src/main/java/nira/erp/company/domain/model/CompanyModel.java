@@ -3,6 +3,7 @@ package nira.erp.company.domain.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
@@ -10,7 +11,7 @@ import java.util.UUID;
  */
 @Getter
 @Setter
-public class CompanyModel {
+public class CompanyModel implements Serializable {
     private UUID companyId;
 
     private String tradeName;

@@ -6,8 +6,8 @@ import java.io.Serializable;
 
 @Getter
 public class NiraNotFoundException extends RuntimeException implements Serializable {
-    private final Object data;
-    public NiraNotFoundException(String message, Object data) {
+    private final Serializable data;
+    public NiraNotFoundException(String message, Serializable data) {
         super(message);
         this.data = data;
     }
