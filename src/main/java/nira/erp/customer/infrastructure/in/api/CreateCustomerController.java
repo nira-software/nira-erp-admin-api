@@ -26,7 +26,7 @@ public class CreateCustomerController {
     public Response create(CustomerCreateCommand customer) {
         try {
             NiraResponse niraResponse = this.createCustomerUseCase.save(customer);
-            return Response.status(niraResponse.getStatus()).entity(niraResponse).build();
+            return Response.status(niraResponse.status()).entity(niraResponse).build();
         } catch (IllegalArgumentException e) {
             throw new NiraBadRequestException(e.getMessage(), customer);
         }

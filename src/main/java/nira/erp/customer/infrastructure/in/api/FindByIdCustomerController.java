@@ -28,7 +28,7 @@ public class FindByIdCustomerController {
             LoadCustomerCommand command = new LoadCustomerCommand();
             command.setCustomerId(customerId);
             NiraResponse niraResponse = loadCustomerUseCase.load(command);
-            return Response.status(niraResponse.getStatus()).entity(niraResponse).build();
+            return Response.status(niraResponse.status()).entity(niraResponse).build();
         } catch (IllegalArgumentException e) {
             throw new NiraNotFoundException(e.getMessage(), customerId);
         }

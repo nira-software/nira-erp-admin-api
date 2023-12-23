@@ -3,13 +3,15 @@ package nira.erp.customer.application.command;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 /**
  * Estructura de datos para crear un cliente.
  * typePort: Input
  */
 @Getter
 @Setter
-public class CustomerCreateCommand {
+public class CustomerCreateCommand implements Serializable {
 
     /**
      * Identificador de la empresa.
