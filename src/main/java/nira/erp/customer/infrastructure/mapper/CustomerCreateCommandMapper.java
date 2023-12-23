@@ -29,8 +29,7 @@ public class CustomerCreateCommandMapper {
             ArrayList<CustomerAddressModel> addresses = new ArrayList<>();
             CustomerAddressModel address = new CustomerAddressModel();
             address.setStreetAddress(customerCommand.getAddress());
-            // TODO: set city id
-            address.setCityId(UUID.fromString("f02fabab-a4c3-4e61-b947-83f437a06709"));
+            address.setCityId(UUID.fromString(customerCommand.getCityId()));
             // TODO: set type
             address.setType("BILLING");
             address.setActive(true);

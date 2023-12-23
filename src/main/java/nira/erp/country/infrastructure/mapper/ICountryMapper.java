@@ -10,6 +10,8 @@ public interface ICountryMapper {
 
     @Mapping(target = "countryName", source = "name")
     @Mapping(target = "countryCode", source = "code")
+    @Mapping(target = "customers", ignore = true)
+    @Mapping(target = "states", ignore = true)
     GeoCountryEntity toEntity(CountryModel countryModel);
 
     @Mapping(target = "name", source = "countryName")

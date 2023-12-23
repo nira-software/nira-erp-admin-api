@@ -42,17 +42,17 @@ public class CustomerCreateCommand {
     private String phoneNumber;
 
     /**
+     * Ciudad a la que pertenece la direccion brindada por el cliente.
+     */
+    private String cityId;
+
+    /**
      * Dirección del cliente.
      */
     private String address;
 
     /**
-     * Ciudad del cliente.
-     */
-    private String cityId;
-
-    /**
-     * Pais del cliente.
+     * Pais al que pertenece el cliente.
      */
     private String countryId;
 }

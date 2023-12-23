@@ -31,6 +31,7 @@ class FindByIdCustomerControllerTest {
         command.setPhoneNumber("70135454");
         command.setTradeName("Company Test");
         command.setAddress("Test Address");
+        command.setCityId("f02fabab-a4c3-4e61-b947-83f437a06709");
         command.setCompanyId("97b33f1f-9874-43d4-893f-2a7f34e7eb41");
         command.setCountryId("f64f2d7f-f871-4e8b-8cb1-223655d277bf");
     }

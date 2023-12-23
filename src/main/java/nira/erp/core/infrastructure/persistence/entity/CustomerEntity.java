@@ -27,11 +27,11 @@ public class CustomerEntity extends PanacheEntityBase {
 
     // Claves foráneas
     @ManyToOne()
-    @JoinColumn(name = "company_id", referencedColumnName = "company_id")
+    @JoinColumn(name = "company_id", referencedColumnName = "company_id", nullable = false)
     public CompanyEntity company;
 
     @ManyToOne()
-    @JoinColumn(name = "country_id", referencedColumnName = "country_id")
+    @JoinColumn(name = "country_id", referencedColumnName = "country_id", nullable = false)
     public GeoCountryEntity country;
 
     @OneToMany(mappedBy = "customer")

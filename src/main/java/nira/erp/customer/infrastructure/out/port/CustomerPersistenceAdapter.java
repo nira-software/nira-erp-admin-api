@@ -2,14 +2,8 @@ package nira.erp.customer.infrastructure.out.port;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import nira.erp.company.infrastructure.out.port.CompanyPersistenceAdapter;
-import nira.erp.core.infrastructure.persistence.entity.CompanyEntity;
-import nira.erp.core.infrastructure.persistence.entity.GeoCountryEntity;
-import nira.erp.core.infrastructure.persistence.entity.CustomerAddressEntity;
-import nira.erp.core.infrastructure.persistence.entity.CustomerEntity;
-import nira.erp.core.infrastructure.persistence.repository.CustomerAddressRepository;
-import nira.erp.core.infrastructure.persistence.repository.CustomerRepository;
-import nira.erp.country.infrastructure.out.port.CountryPersistenceAdapter;
+import nira.erp.core.infrastructure.persistence.entity.*;
+import nira.erp.core.infrastructure.persistence.repository.*;
 import nira.erp.customer.application.port.out.CreateCustomerOutPort;
 import nira.erp.customer.application.port.out.LoadCustomerOutPort;
 import nira.erp.customer.domain.model.CustomerModel;
@@ -33,17 +27,14 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
     @Inject
     CustomerAddressRepository customerAddressRepository;
 
-    /**
-     * Adaptador de persistencia para el modulo de Compañias
-     */
     @Inject
-    CompanyPersistenceAdapter companyPersistenceAdapter;
+    GeoCityRepository geoCityRepository;
 
-    /**
-     * Adaptador de persistencia para el modulo de paises
-     */
     @Inject
-    CountryPersistenceAdapter countryPersistenceAdapter;
+    CountryRepository geoCountryRepository;
+
+    @Inject
+    CompanyRepository companyRepository;
 
     /**
      * Mapper para convertir de modelo a entidad
@@ -59,11 +50,15 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
      */
     @Override
     public CustomerModel createCustomer(CustomerModel customerModel) {
+        GeoCityEntity geoCityEntity = geoCityRepository.findById(customerModel.getAddresses().get(0).getCityId());
         GeoCountryEntity geoCountryEntity = this.loadCountry(customerModel.getCountry().getCountryId());
         CompanyEntity companyEntity = this.loadCompany(customerModel.getCompany().getCompanyId());
+
         CustomerEntity customerEntity = customerMapper.toEntity(customerModel);
         customerEntity.company = companyEntity;
         customerEntity.country = geoCountryEntity;
+        customerEntity.addresses.get(0).city = geoCityEntity;
+
         customerRepository.getEntityManager().merge(customerEntity);
         customerAddressRepository.getEntityManager().merge(createCustomerAddress(customerEntity));
 
@@ -92,7 +87,7 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
      * @return entidad de pais
      */
     private GeoCountryEntity loadCountry(UUID countryId) {
-        GeoCountryEntity country = countryPersistenceAdapter.loadCountry(countryId);
+        GeoCountryEntity country = geoCountryRepository.findById(countryId);
         if (country == null) {
             throw new IllegalArgumentException("Country not found");
         }
@@ -106,7 +101,7 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
      * @return entidad de compañia
      */
     private CompanyEntity loadCompany(UUID companyId) {
-        CompanyEntity company = companyPersistenceAdapter.loadCompany(companyId);
+        CompanyEntity company = companyRepository.findById(companyId);
         if (company == null) {
             throw new IllegalArgumentException("Company not found");
         }

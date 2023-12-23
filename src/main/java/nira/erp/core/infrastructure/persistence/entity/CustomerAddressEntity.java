@@ -37,6 +37,6 @@ public class CustomerAddressEntity extends PanacheEntityBase {
     public CustomerEntity customer;
 
     @ManyToOne()
-    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+    @JoinColumn(name = "city_id", referencedColumnName = "city_id", nullable = false)
     public GeoCityEntity city;
 }
