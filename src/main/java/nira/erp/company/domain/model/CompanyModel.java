@@ -1,6 +1,5 @@
 package nira.erp.company.domain.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

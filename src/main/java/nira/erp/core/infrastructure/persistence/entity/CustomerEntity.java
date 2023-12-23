@@ -3,13 +3,13 @@ package nira.erp.core.infrastructure.persistence.entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "customers")
 public class CustomerEntity extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "customer_id")
     public UUID customerId;
 
@@ -27,10 +27,13 @@ public class CustomerEntity extends PanacheEntityBase {
 
     // Claves foráneas
     @ManyToOne()
-    @JoinColumn(name = "company_id", referencedColumnName = "company_id")
-    public CompanyEntity companyEntity;
+    @JoinColumn(name = "company_id", referencedColumnName = "company_id", nullable = false)
+    public CompanyEntity company;
 
     @ManyToOne()
-    @JoinColumn(name = "country_id", referencedColumnName = "country_id")
-    public CountryEntity countryEntity;
+    @JoinColumn(name = "country_id", referencedColumnName = "country_id", nullable = false)
+    public GeoCountryEntity country;
+
+    @OneToMany(mappedBy = "customer")
+    public List<CustomerAddressEntity> addresses;
 }

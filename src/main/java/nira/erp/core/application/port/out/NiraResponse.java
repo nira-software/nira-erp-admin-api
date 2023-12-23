@@ -2,7 +2,6 @@ package nira.erp.core.application.port.out;
 
 import jakarta.ws.rs.core.Response;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class NiraResponse {

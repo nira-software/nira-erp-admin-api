@@ -1,6 +1,5 @@
 package nira.erp.customer.application.command;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

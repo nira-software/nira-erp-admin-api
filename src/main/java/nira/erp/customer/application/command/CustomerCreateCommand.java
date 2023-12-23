@@ -1,6 +1,5 @@
 package nira.erp.customer.application.command;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,7 +42,17 @@ public class CustomerCreateCommand {
     private String phoneNumber;
 
     /**
-     * Pais del cliente.
+     * Ciudad a la que pertenece la direccion brindada por el cliente.
+     */
+    private String cityId;
+
+    /**
+     * Dirección del cliente.
+     */
+    private String address;
+
+    /**
+     * Pais al que pertenece el cliente.
      */
     private String countryId;
 }

@@ -1,7 +1,10 @@
 package nira.erp.core.infrastructure.persistence.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,7 +13,6 @@ import java.util.UUID;
 public class CompanyEntity extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "company_id")
     public UUID companyId;
 
@@ -26,13 +28,10 @@ public class CompanyEntity extends PanacheEntityBase {
     @Column(name = "phone_number")
     public String phoneNumber;
 
-    // Otros campos según sea necesario
-
-    // Relación con la tabla de configuración global
     @OneToMany(mappedBy = "companyEntity")
     public List<CompanyGlobalConfig> companyGlobalConfigs;
 
     // Relación con la tabla de clientes
-    @OneToMany(mappedBy = "companyEntity")
+    @OneToMany(mappedBy = "company")
     public List<CustomerEntity> customerEntities;
 }

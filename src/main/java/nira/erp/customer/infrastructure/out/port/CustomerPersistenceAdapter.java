@@ -2,17 +2,14 @@ package nira.erp.customer.infrastructure.out.port;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import nira.erp.company.infrastructure.out.port.CompanyPersistenceAdapter;
-import nira.erp.core.infrastructure.persistence.entity.CompanyEntity;
-import nira.erp.core.infrastructure.persistence.entity.CountryEntity;
-import nira.erp.core.infrastructure.persistence.entity.CustomerEntity;
-import nira.erp.core.infrastructure.persistence.repository.CustomerRepository;
-import nira.erp.country.infrastructure.out.port.CountryPersistenceAdapter;
+import nira.erp.core.infrastructure.persistence.entity.*;
+import nira.erp.core.infrastructure.persistence.repository.*;
 import nira.erp.customer.application.port.out.CreateCustomerOutPort;
 import nira.erp.customer.application.port.out.LoadCustomerOutPort;
 import nira.erp.customer.domain.model.CustomerModel;
 import nira.erp.customer.infrastructure.mapper.CustomerMapper;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 /**
@@ -27,17 +24,17 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
     @Inject
     CustomerRepository customerRepository;
 
-    /**
-     * Adaptador de persistencia para el modulo de Compañias
-     */
     @Inject
-    CompanyPersistenceAdapter companyPersistenceAdapter;
+    CustomerAddressRepository customerAddressRepository;
 
-    /**
-     * Adaptador de persistencia para el modulo de paises
-     */
     @Inject
-    CountryPersistenceAdapter countryPersistenceAdapter;
+    GeoCityRepository geoCityRepository;
+
+    @Inject
+    GeoCountryRepository geoCountryRepository;
+
+    @Inject
+    CompanyRepository companyRepository;
 
     /**
      * Mapper para convertir de modelo a entidad
@@ -53,13 +50,19 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
      */
     @Override
     public CustomerModel createCustomer(CustomerModel customerModel) {
-        CountryEntity countryEntity = this.loadCountry(customerModel.getCountry().getCountryId());
+        GeoCityEntity geoCityEntity = geoCityRepository.findById(customerModel.getAddresses().get(0).getCityId());
+        GeoCountryEntity geoCountryEntity = this.loadCountry(customerModel.getCountry().getCountryId());
         CompanyEntity companyEntity = this.loadCompany(customerModel.getCompany().getCompanyId());
+
         CustomerEntity customerEntity = customerMapper.toEntity(customerModel);
-        customerEntity.companyEntity = companyEntity;
-        customerEntity.countryEntity = countryEntity;
+        customerEntity.company = companyEntity;
+        customerEntity.country = geoCountryEntity;
+        customerEntity.addresses.get(0).city = geoCityEntity;
+
         customerRepository.getEntityManager().merge(customerEntity);
-        return customerModel;
+        customerAddressRepository.getEntityManager().merge(createCustomerAddress(customerEntity));
+
+        return customerMapper.toModel(customerEntity);
     }
 
     /**
@@ -83,8 +86,8 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
      * @param countryId id de pais
      * @return entidad de pais
      */
-    private CountryEntity loadCountry(UUID countryId) {
-        CountryEntity country = countryPersistenceAdapter.loadCountry(countryId);
+    private GeoCountryEntity loadCountry(UUID countryId) {
+        GeoCountryEntity country = geoCountryRepository.findById(countryId);
         if (country == null) {
             throw new IllegalArgumentException("Country not found");
         }
@@ -98,10 +101,17 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
      * @return entidad de compañia
      */
     private CompanyEntity loadCompany(UUID companyId) {
-        CompanyEntity company = companyPersistenceAdapter.loadCompany(companyId);
+        CompanyEntity company = companyRepository.findById(companyId);
         if (company == null) {
             throw new IllegalArgumentException("Company not found");
         }
         return company;
+    }
+
+    private CustomerAddressEntity createCustomerAddress(CustomerEntity customer) {
+        CustomerAddressEntity customerAddressEntity = customer.addresses.get(0);
+        customerAddressEntity.createdAt = new Timestamp(System.currentTimeMillis());
+        customerAddressEntity.customer = customer;
+        return customerAddressEntity;
     }
 }

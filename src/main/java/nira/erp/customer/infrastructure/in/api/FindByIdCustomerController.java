@@ -5,10 +5,10 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import nira.erp.core.application.port.out.NiraResponse;
 import nira.erp.core.infrastructure.out.api.exception.NiraNotFoundException;
 import nira.erp.customer.application.command.LoadCustomerCommand;
-import nira.erp.core.application.port.out.NiraResponse;
-import nira.erp.customer.application.usercases.LoadCustomerUseCase;
+import nira.erp.customer.application.port.in.LoadCustomerInPort;
 
 import java.util.UUID;
 
@@ -17,7 +17,7 @@ import java.util.UUID;
 @Path("/api/v1/customer")
 public class FindByIdCustomerController {
     @Inject
-    LoadCustomerUseCase loadCustomerUseCase;
+    LoadCustomerInPort loadCustomerUseCase;
 
     @GET()
     @Path("/{customerId}")
