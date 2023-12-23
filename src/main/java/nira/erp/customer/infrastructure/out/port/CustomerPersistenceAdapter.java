@@ -31,7 +31,7 @@ public class CustomerPersistenceAdapter implements LoadCustomerOutPort, CreateCu
     GeoCityRepository geoCityRepository;
 
     @Inject
-    CountryRepository geoCountryRepository;
+    GeoCountryRepository geoCountryRepository;
 
     @Inject
     CompanyRepository companyRepository;

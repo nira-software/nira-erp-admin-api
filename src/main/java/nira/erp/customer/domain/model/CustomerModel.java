@@ -1,12 +1,10 @@
 package nira.erp.customer.domain.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import nira.erp.company.domain.model.CompanyModel;
 import nira.erp.country.domain.model.model.CountryModel;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 

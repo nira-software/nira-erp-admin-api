@@ -8,5 +8,5 @@ import java.util.UUID;
 
 
 @ApplicationScoped
-public class CountryRepository implements PanacheRepositoryBase<GeoCountryEntity, UUID> {
+public class GeoCountryRepository implements PanacheRepositoryBase<GeoCountryEntity, UUID> {
 }

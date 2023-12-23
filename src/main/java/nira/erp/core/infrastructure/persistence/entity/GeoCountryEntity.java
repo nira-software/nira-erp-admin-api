@@ -1,7 +1,10 @@
 package nira.erp.core.infrastructure.persistence.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.util.List;
 import java.util.UUID;

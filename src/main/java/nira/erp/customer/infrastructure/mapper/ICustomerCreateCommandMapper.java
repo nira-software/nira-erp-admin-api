@@ -1,7 +1,6 @@
 package nira.erp.customer.infrastructure.mapper;
 
 import nira.erp.company.infrastructure.mapper.CompanyMapper;
-import nira.erp.country.infrastructure.mapper.CountryMapper;
 import nira.erp.customer.application.command.CustomerCreateCommand;
 import nira.erp.customer.domain.model.CustomerModel;
 import org.mapstruct.Mapper;
