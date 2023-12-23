@@ -12,6 +12,6 @@ public class NofFoundExceptionMapper implements ExceptionMapper<NiraNotFoundExce
     @Override
     public Response toResponse(NiraNotFoundException e) {
         NiraResponse niraResponse = new NiraResponse(Response.Status.NOT_FOUND, e.getMessage(), e.getData());
-        return Response.status(niraResponse.getStatus()).entity(niraResponse).build();
+        return Response.status(niraResponse.status()).entity(niraResponse).build();
     }
 }

@@ -3,6 +3,7 @@ package nira.erp.country.domain.model.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
@@ -10,7 +11,7 @@ import java.util.UUID;
  */
 @Setter
 @Getter
-public class CountryModel {
+public class CountryModel implements Serializable {
     private UUID countryId;
 
     private String name;

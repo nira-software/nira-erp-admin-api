@@ -12,6 +12,6 @@ public class BadRequestExceptionMapper implements ExceptionMapper<NiraBadRequest
     @Override
     public Response toResponse(NiraBadRequestException e) {
         NiraResponse niraResponse = new NiraResponse(Response.Status.BAD_REQUEST, e.getMessage(), e.getData());
-        return Response.status(niraResponse.getStatus()).entity(niraResponse).build();
+        return Response.status(niraResponse.status()).entity(niraResponse).build();
     }
 }

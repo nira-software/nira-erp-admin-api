@@ -12,6 +12,7 @@ public interface ICustomerCreateCommandMapper {
     @Mapping(target = "countryId", source = "country.countryId")
     @Mapping(target = "companyId", source = "company.companyId")
     @Mapping(ignore = true, target = "address")
+    @Mapping(ignore = true, target = "cityId")
     CustomerCreateCommand toCommand(CustomerModel customerModel);
 
     @Mapping(target = "country.countryId", source = "countryId")
